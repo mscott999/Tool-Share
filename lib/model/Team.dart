@@ -14,6 +14,17 @@ class Team {
   Team(this._number, this._location, this._toolList, this._bio, this._name,
       this._password);
 
+  //String toCSV() {
+  //  return _number.toString() + ',' +
+  //         _location.latitude.toString() + ',' +
+  //         _location.longitude.toString() + ',' +
+  //         _toolList.to
+  //         _bio + ',' +
+  //         _name + ',' +
+  //         _password + ',' +
+//
+  //}
+
   int compareTo(Team team) {
     return _number.compareTo(team.getNumber());
   }

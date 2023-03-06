@@ -36,7 +36,9 @@ class LoginView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ElevatedButton(
-              onPressed: null,
+              onPressed: () {
+                LoginViewModel.routeToHome(context);
+              },
               child: Text("Sign In"),
             ),
             ElevatedButton(
