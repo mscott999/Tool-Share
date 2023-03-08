@@ -24,7 +24,7 @@ class HomeView extends StatelessWidget {
                   onPressed: () {
                     null;
                   },
-                  child: Text(
+                  child: const Text(
                     'Add New Tool To Team',
                     textScaleFactor: 1.4,
                   ),
@@ -43,7 +43,8 @@ class HomeView extends StatelessWidget {
                   onPressed: () {
                     null;
                   },
-                  child: Text('Remove Tool To Team', textScaleFactor: 1.4),
+                  child:
+                      const Text('Remove Tool To Team', textScaleFactor: 1.4),
                 ),
               ),
               Padding(
@@ -59,7 +60,7 @@ class HomeView extends StatelessWidget {
                   onPressed: () {
                     null;
                   },
-                  child: Text('Search For Tool', textScaleFactor: 1.4),
+                  child: const Text('Search For Tool', textScaleFactor: 1.4),
                 ),
               ),
               Padding(
@@ -75,19 +76,25 @@ class HomeView extends StatelessWidget {
                   onPressed: () {
                     null;
                   },
-                  child: Text('Emergency Requests', textScaleFactor: 1.4),
+                  child: const Text('Emergency Requests', textScaleFactor: 1.4),
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
-                    onPressed: null,
+                    onPressed: () {
+                      null;
+                    },
                     child: Text("Sign Out"),
                   ),
                   ElevatedButton(
-                    onPressed: null,
-                    child: Text("Delete Team"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.red, onPrimary: Colors.yellow),
+                    onPressed: () {
+                      null;
+                    },
+                    child: const Text("Delete Team"),
                   ),
                 ],
               )

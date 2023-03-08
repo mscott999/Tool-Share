@@ -1,9 +1,15 @@
+import 'dart:collection';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:tool_share/view/loginView.dart';
 
-File? teamCSV;
+import 'model/Team.dart';
+
+File? _teamCSV;
+HashMap<int, Team> _teamMap = HashMap();
+late Team _loggedInTeam;
+
 void main() {
   initCSV();
   runApp(const ToolShare());
@@ -26,8 +32,24 @@ void initCSV() async {
   WidgetsFlutterBinding.ensureInitialized();
   Directory directory = await getApplicationDocumentsDirectory();
   String filePath = '${directory.path}/teams.csv';
-  teamCSV = File(filePath);
-  print(teamCSV!.path);
-  teamCSV?.writeAsString('name');
-  print(await teamCSV!.readAsString());
+  _teamCSV = File(filePath);
+  print(_teamCSV!.path);
+  _teamCSV?.writeAsString('name');
+  print(await _teamCSV!.readAsString());
+}
+
+void logInTeam(Team team) {
+  _loggedInTeam = team;
+}
+
+Team getLoggedInTeam() {
+  return _loggedInTeam;
+}
+
+void addTeamToMap(Team team) {
+  _teamMap.addAll({team.getNumber(): team});
+}
+
+HashMap getTeamMap() {
+  return _teamMap;
 }

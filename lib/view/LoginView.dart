@@ -11,9 +11,12 @@ class LoginView extends StatelessWidget {
       appBar: AppBar(title: const Text('Tool Share')),
       body: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         const Text('Sign in', style: TextStyle(fontSize: 35)),
-        const Padding(
+        Padding(
           padding: EdgeInsets.symmetric(vertical: 0, horizontal: 30),
           child: TextField(
+            onChanged: (String string) {
+              LoginViewModel.setTargetNumber(string);
+            },
             decoration: InputDecoration(
               hintText: 'Team number',
               filled: true,
@@ -21,9 +24,12 @@ class LoginView extends StatelessWidget {
             ),
           ),
         ),
-        const Padding(
+        Padding(
           padding: EdgeInsets.symmetric(vertical: 0, horizontal: 30),
           child: TextField(
+            onChanged: (String string) {
+              LoginViewModel.setTargetPassword(string);
+            },
             obscureText: true,
             decoration: InputDecoration(
               hintText: 'Password',
@@ -37,7 +43,7 @@ class LoginView extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                LoginViewModel.routeToHome(context);
+                LoginViewModel.attemptLogin(context);
               },
               child: Text("Sign In"),
             ),
