@@ -45,9 +45,8 @@ class LoginViewModel {
             );
           });
     } else if (!getTeamMap().containsKey(int.parse(_targetNumber)) ||
-        getTeamMap()[int.parse(_targetNumber)]
-            .getPassword()
-            .equals(_targetPassword)) {
+        getTeamMap()[int.parse(_targetNumber)].getPassword() !=
+            _targetPassword) {
       showDialog(
           context: context,
           builder: (context) {
@@ -74,7 +73,7 @@ class LoginViewModel {
 
   static void routeToNewUser(context) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: ((context) => NewTeam())));
+        .push(MaterialPageRoute(builder: ((context) => NewTeamView())));
   }
 
   static void routeToHome(context) {

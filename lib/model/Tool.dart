@@ -1,6 +1,6 @@
 class Tool {
   int _quantity;
-  List<String> _daysAvailable;
+  List<bool> _daysAvailable;
   String _title;
 
   Tool(this._quantity, this._daysAvailable, this._title);
@@ -13,7 +13,7 @@ class Tool {
     return _quantity;
   }
 
-  List<String> getDaysAvailable() {
+  List<bool> getDaysAvailable() {
     return _daysAvailable;
   }
 

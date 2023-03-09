@@ -8,7 +8,7 @@ import 'model/Team.dart';
 
 File? _teamCSV;
 HashMap<int, Team> _teamMap = HashMap();
-late Team _loggedInTeam;
+Team? _loggedInTeam;
 
 void main() {
   initCSV();
@@ -42,7 +42,11 @@ void logInTeam(Team team) {
   _loggedInTeam = team;
 }
 
-Team getLoggedInTeam() {
+void logOutTeam() {
+  _loggedInTeam = null;
+}
+
+Team? getLoggedInTeam() {
   return _loggedInTeam;
 }
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../viewmodel/NewTeamViewModel.dart';
 
-class NewTeam extends StatelessWidget {
+class NewTeamView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

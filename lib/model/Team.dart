@@ -23,6 +23,10 @@ class Team {
 //
   //}
 
+  void addTool(Tool tool) {
+    _toolList.add(tool);
+  }
+
   int compareTo(Team team) {
     return _number.compareTo(team.getNumber());
   }

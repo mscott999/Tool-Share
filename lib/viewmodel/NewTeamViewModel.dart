@@ -126,7 +126,7 @@ class NewTeamViewModel {
               ],
             );
           });
-    } else if (_targetName.length < 4) {
+    } else if (_targetName.length <= 0) {
       showDialog(
           context: _bContext,
           builder: (bContext) {
@@ -172,7 +172,7 @@ class NewTeamViewModel {
           context: _bContext,
           builder: (bContext) {
             return SimpleDialog(
-              title: const Text('Team Successfully initialized'),
+              title: const Text('Team Successfully Initialized'),
               children: [
                 Column(children: [
                   Text('Team ' +
@@ -192,18 +192,22 @@ class NewTeamViewModel {
 
   static void setTargetNumber(String string) {
     _targetNumber = string;
+    print('number: ' + _targetNumber);
   }
 
   static void setTargetPassword(String string) {
     _targetPassword = string;
+    print('Password: ' + _targetPassword);
   }
 
   static void setTargetName(String string) {
     _targetName = string;
+    print('Name: ' + _targetName);
   }
 
   static void setTargetDescription(String string) {
     _targetDescription = string;
+    print('Bio: ' + _targetDescription);
   }
 
   static void routeToHome(context) {
