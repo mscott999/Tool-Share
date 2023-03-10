@@ -60,6 +60,47 @@ class AddToolViewModel {
             );
           });
     } else {
+      bool _alreadyExists = false;
+      getLoggedInTeam()!.getToolList().forEach((Tool tool) {
+        if (_targetName == tool.getTitle()) {
+          _alreadyExists = true;
+        }
+      });
+      if (_alreadyExists) {
+        print('Running');
+        showDialog(
+            context: context,
+            builder: (context) {
+              return SimpleDialog(
+                title: const Text('Equipment Already Added'),
+                children: [
+                  Column(children: [
+                    Text(_targetName +
+                        ' has already been added to this team. Do you wish to overwrite?'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                            onPressed: () {
+                              getLoggedInTeam()!.getToolList().removeWhere(
+                                  (tool) => tool.getTitle() == _targetName);
+                              Navigator.pop(context);
+                            },
+                            child: const Text('Yes')),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            return;
+                          },
+                          child: Text('No'),
+                        ),
+                      ],
+                    ),
+                  ]),
+                ],
+              );
+            });
+      }
       getLoggedInTeam()!.addTool(Tool(
           _targetQuantity,
           [
@@ -79,10 +120,9 @@ class AddToolViewModel {
               title: const Text('Equipment Successfully Added'),
               children: [
                 Column(children: [
-                  Text('"' + _targetName + '" was been added to your team!'),
+                  Text('"' + _targetName + '" has been added to your team!'),
                   ElevatedButton(
                       onPressed: () {
-                        //FINISH
                         routeToHome(context);
                       },
                       child: const Text('Ok')),

@@ -25,6 +25,7 @@ class Team {
 
   void addTool(Tool tool) {
     _toolList.add(tool);
+    print(_toolList.toString());
   }
 
   int compareTo(Team team) {
