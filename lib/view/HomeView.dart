@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../viewmodel/HomeViewModel.dart';
 
 class HomeView extends StatelessWidget {
@@ -44,7 +43,7 @@ class HomeView extends StatelessWidget {
                       fixedSize: const Size(300, 100),
                     ),
                     onPressed: () {
-                      null;
+                      HomeViewModel.routeToDeleteTool(context);
                     },
                     child:
                         const Text('Remove Tool To Team', textScaleFactor: 1.4),
@@ -61,7 +60,7 @@ class HomeView extends StatelessWidget {
                       fixedSize: const Size(300, 100),
                     ),
                     onPressed: () {
-                      null;
+                      HomeViewModel.routeToSearchTool(context);
                     },
                     child: const Text('Search For Tool', textScaleFactor: 1.4),
                   ),

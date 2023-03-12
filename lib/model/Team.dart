@@ -28,6 +28,10 @@ class Team {
     print(_toolList.toString());
   }
 
+  void removeTool(Tool tool) {
+    _toolList.remove(tool);
+  }
+
   int compareTo(Team team) {
     return _number.compareTo(team.getNumber());
   }

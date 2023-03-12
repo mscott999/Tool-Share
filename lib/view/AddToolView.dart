@@ -4,7 +4,7 @@ import 'package:numberpicker/numberpicker.dart';
 import 'package:tool_share/viewmodel/AddToolViewModel.dart';
 
 class AddToolView extends StatefulWidget {
-  _AddToolViewState createState() => new _AddToolViewState();
+  _AddToolViewState createState() => _AddToolViewState();
 }
 
 class _AddToolViewState extends State<AddToolView> {

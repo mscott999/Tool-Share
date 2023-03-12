@@ -16,6 +16,12 @@ class AddToolViewModel {
   static bool _targetSaturday = false;
 
   static void attemptAdd(BuildContext context) {
+    bool _alreadyExists = false;
+    getLoggedInTeam()!.getToolList().forEach((Tool tool) {
+      if (_targetName == tool.getTitle()) {
+        _alreadyExists = true;
+      }
+    });
     if (_targetName.isEmpty) {
       showDialog(
           context: context,
@@ -59,48 +65,73 @@ class AddToolViewModel {
               ],
             );
           });
-    } else {
-      bool _alreadyExists = false;
-      getLoggedInTeam()!.getToolList().forEach((Tool tool) {
-        if (_targetName == tool.getTitle()) {
-          _alreadyExists = true;
-        }
-      });
-      if (_alreadyExists) {
-        print('Running');
-        showDialog(
-            context: context,
-            builder: (context) {
-              return SimpleDialog(
-                title: const Text('Equipment Already Added'),
-                children: [
-                  Column(children: [
-                    Text(_targetName +
-                        ' has already been added to this team. Do you wish to overwrite?'),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ElevatedButton(
-                            onPressed: () {
-                              getLoggedInTeam()!.getToolList().removeWhere(
-                                  (tool) => tool.getTitle() == _targetName);
-                              Navigator.pop(context);
-                            },
-                            child: const Text('Yes')),
-                        ElevatedButton(
+    } else if (_alreadyExists) {
+      print('Running');
+      showDialog(
+          context: context,
+          builder: (context) {
+            return SimpleDialog(
+              title: const Text('Equipment Already Added'),
+              children: [
+                Column(children: [
+                  Text(_targetName +
+                      ' has already been added to this team. Do you wish to overwrite?'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
                           onPressed: () {
+                            getLoggedInTeam()!.getToolList().removeWhere(
+                                (tool) => tool.getTitle() == _targetName);
                             Navigator.pop(context);
-                            return;
+                            getLoggedInTeam()!.addTool(Tool(
+                                _targetQuantity,
+                                [
+                                  _targetSunday,
+                                  _targetMonday,
+                                  _targetTuesday,
+                                  _targetWednesday,
+                                  _targetThursday,
+                                  _targetFriday,
+                                  _targetSaturday
+                                ],
+                                _targetName));
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return SimpleDialog(
+                                    title: const Text(
+                                        'Equipment Successfully Added'),
+                                    children: [
+                                      Column(children: [
+                                        Text('"' +
+                                            _targetName +
+                                            '" has been added to your team!'),
+                                        ElevatedButton(
+                                            onPressed: () {
+                                              routeToHome(context);
+                                            },
+                                            child: const Text('Ok')),
+                                      ]),
+                                    ],
+                                  );
+                                });
                           },
-                          child: Text('No'),
-                        ),
-                      ],
-                    ),
-                  ]),
-                ],
-              );
-            });
-      }
+                          child: const Text('Yes')),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text('No'),
+                      ),
+                    ],
+                  ),
+                ]),
+              ],
+            );
+          });
+      print('runningdone');
+    } else {
       getLoggedInTeam()!.addTool(Tool(
           _targetQuantity,
           [
