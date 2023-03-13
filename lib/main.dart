@@ -45,6 +45,10 @@ void logOutTeam() {
   _loggedInTeam = null;
 }
 
+void deleteTeam(Team? team) {
+  _teamMap.remove(team);
+}
+
 Team? getLoggedInTeam() {
   return _loggedInTeam;
 }

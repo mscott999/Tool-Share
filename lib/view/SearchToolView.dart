@@ -10,7 +10,15 @@ class SearchToolView extends StatelessWidget {
       appBar: AppBar(title: const Text('Tool Share')),
       body: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         const Text('Search For Tool', style: TextStyle(fontSize: 35)),
-        _AutoCompleteBox(),
+        Padding(
+          padding: EdgeInsets.symmetric(),
+          child: Column(
+            children: [
+              _AutoCompleteBox(),
+              SearchToolViewModel.getMap(context),
+            ],
+          ),
+        ),
       ]),
     );
   }
@@ -49,7 +57,37 @@ class _AutoCompleteBox extends StatelessWidget {
             if (_toolNames.contains(string)) {
               SearchToolViewModel.searchForTool(string);
             } else {
-              print('bruh');
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return SimpleDialog(
+                      title: const Text('Tool not found'),
+                      children: [
+                        Column(children: [
+                          Text('"' +
+                              string +
+                              '" does not belong to any team. Would you like to submit an emergency request?'),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    SearchToolViewModel.routeToEmergencyRequest(
+                                        context);
+                                  },
+                                  child: const Text('Yes')),
+                              ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('No')),
+                            ],
+                          ),
+                        ]),
+                      ],
+                    );
+                  });
             }
           },
         );

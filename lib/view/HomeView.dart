@@ -84,7 +84,7 @@ class HomeView extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        null;
+                        HomeViewModel.logOut(context);
                       },
                       child: Text("Sign Out"),
                     ),
@@ -92,7 +92,7 @@ class HomeView extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                           primary: Colors.red, onPrimary: Colors.yellow),
                       onPressed: () {
-                        null;
+                        HomeViewModel.delete(context);
                       },
                       child: const Text("Delete Team"),
                     ),
