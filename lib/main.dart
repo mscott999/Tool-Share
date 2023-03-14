@@ -47,7 +47,8 @@ void logOutTeam() {
 }
 
 void deleteTeam(Team? team) {
-  _teamMap.remove(team);
+  _teamMap.remove(team!.getNumber());
+  print(_teamMap.toString());
 }
 
 Team? getLoggedInTeam() {

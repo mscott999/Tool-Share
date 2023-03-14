@@ -3,6 +3,7 @@ import '../viewmodel/HomeViewModel.dart';
 
 class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
+    HomeViewModel.loadFulfilledRequests(context);
     return Scaffold(
         appBar: AppBar(
           title: const Text('Tool Share'),
@@ -73,7 +74,7 @@ class HomeView extends StatelessWidget {
                       fixedSize: const Size(300, 100),
                     ),
                     onPressed: () {
-                      null;
+                      HomeViewModel.routeToEmergencyRequest(context);
                     },
                     child:
                         const Text('Emergency Requests', textScaleFactor: 1.4),

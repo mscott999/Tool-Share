@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
+import '../model/EmergencyRequest.dart';
 import '../view/AddToolView.dart';
 import '../view/DeleteToolView.dart';
 import '../view/EmergencyRequestView.dart';
@@ -12,18 +13,25 @@ class HomeViewModel {
     routeToLogin(context);
   }
 
-  static void loadFulfilledRequests(BuildContext context) {
-    showDialog(
+  static Future<void> loadFulfilledRequests(BuildContext context) async {
+    await Future.delayed(Duration.zero);
+    for (EmergencyRequest request
+        in getLoggedInTeam()!.getFulfilledRequests()) {
+      showDialog(
           context: context,
           builder: (context) {
             return SimpleDialog(
-              title: const Text('Invalid Credentials'),
+              title: const Text('Emergency Request Fulfilled!'),
               children: [
                 Column(children: [
-                  const Text(
-                      'The given team number and password do not match any team.'),
+                  Text('Your team\'s request for "' +
+                      request.getName() +
+                      '" has been fulfilled!'),
                   ElevatedButton(
                       onPressed: () {
+                        getLoggedInTeam()!
+                            .getFulfilledRequests()
+                            .remove(request);
                         Navigator.pop(context);
                       },
                       child: const Text('Ok')),
@@ -31,6 +39,7 @@ class HomeViewModel {
               ],
             );
           });
+    }
   }
 
   static void delete(BuildContext context) {
@@ -65,8 +74,6 @@ class HomeViewModel {
             ],
           );
         });
-    deleteTeam(getLoggedInTeam());
-    logOut(context);
   }
 
   static void routeToAddTool(context) {

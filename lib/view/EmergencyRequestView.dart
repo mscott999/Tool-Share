@@ -23,7 +23,6 @@ class _emergencyRequestViewState extends State<EmergencyRequestView> {
       return Scaffold(
         appBar: AppBar(
           title: const Text('Tool Share'),
-          automaticallyImplyLeading: false,
         ),
         body: Column(children: [
           Text('Emergency Requests', style: TextStyle(fontSize: 35)),
@@ -41,7 +40,6 @@ class _emergencyRequestViewState extends State<EmergencyRequestView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tool Share'),
-        automaticallyImplyLeading: false,
       ),
       body: Column(children: [
         Text('Emergency Requests', style: TextStyle(fontSize: 35)),
