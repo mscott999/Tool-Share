@@ -9,6 +9,7 @@ import '../view/EmergencyRequestView.dart';
 
 class SearchToolViewModel {
   static late Map<Team, Marker> _markers;
+
   static LatLng _initialLocation = LatLng(47.595878, -122.124834);
 
   static Widget getMap(BuildContext context) {
@@ -56,18 +57,19 @@ class SearchToolViewModel {
   }
 
   static void searchForTool(String name, State state) {
-    null;
-    getClosestPosition(name);
     print('Searching for ' + name);
+    getClosestPosition(name);
     state.setState(() {});
   }
 
   static void getClosestPosition(String name) {
+    print('GCP start');
     LatLng _closest = _initialLocation;
     double _minDistance = double.infinity;
     _markers.forEach((key, value) {
       for (Tool tool in key.getToolList()) {
         if (tool.getTitle() == name) {
+          print("tool found");
           String _snippet = 'x' +
               tool.getQuantity().toString() +
               ' ' +
@@ -95,7 +97,7 @@ class SearchToolViewModel {
             _snippet += 'Su ';
           }
           value = Marker(
-              markerId: MarkerId(key.getNumber.toString()),
+              markerId: MarkerId((key.getNumber()).toString()),
               position: key.getLocation(),
               infoWindow: InfoWindow(
                 title:
