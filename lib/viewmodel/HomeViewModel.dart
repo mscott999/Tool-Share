@@ -12,6 +12,27 @@ class HomeViewModel {
     routeToLogin(context);
   }
 
+  static void loadFulfilledRequests(BuildContext context) {
+    showDialog(
+          context: context,
+          builder: (context) {
+            return SimpleDialog(
+              title: const Text('Invalid Credentials'),
+              children: [
+                Column(children: [
+                  const Text(
+                      'The given team number and password do not match any team.'),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Ok')),
+                ]),
+              ],
+            );
+          });
+  }
+
   static void delete(BuildContext context) {
     showDialog(
         context: context,

@@ -45,7 +45,7 @@ class SearchToolViewModel {
     List<String> _sortedResults = [];
     getTeamMap().forEach((key, value) {
       value.getToolList().forEach((Tool tool) {
-        _sortedResults.add(tool.getTitle());
+        _sortedResults.add(tool.getTitle().toLowerCase());
       });
     });
     _sortedResults = _sortedResults.toSet().toList();

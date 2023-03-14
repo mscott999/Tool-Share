@@ -1,16 +1,21 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:tool_share/model/EmergencyRequest.dart';
 import 'Tool.dart';
 
 class Team {
   int _number;
   LatLng _location;
   List<Tool> _toolList;
+  List<EmergencyRequest> _emergencyRequests;
+  late List<EmergencyRequest> _fulfilledRequests;
   String _bio;
   String _name;
   String _password;
 
-  Team(this._number, this._location, this._toolList, this._bio, this._name,
-      this._password);
+  Team(this._number, this._location, this._toolList, this._emergencyRequests,
+      this._bio, this._name, this._password) {
+    _fulfilledRequests = [];
+  }
 
   //String toCSV() {
   //  return _number.toString() + ',' +
@@ -46,6 +51,22 @@ class Team {
 
   List<Tool> getToolList() {
     return _toolList;
+  }
+
+  List<EmergencyRequest> getEmergencyRequests() {
+    return _emergencyRequests;
+  }
+
+  List<EmergencyRequest> getFulfilledRequests() {
+    return _fulfilledRequests;
+  }
+
+  void removeFulfilledRequest(EmergencyRequest request) {
+    _fulfilledRequests.remove(request);
+  }
+
+  void removeRequest(EmergencyRequest emergencyRequest) {
+    _emergencyRequests.remove(emergencyRequest);
   }
 
   String getBio() {

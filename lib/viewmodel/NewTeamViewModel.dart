@@ -164,7 +164,7 @@ class NewTeamViewModel {
             );
           });
     } else {
-      Team _newTeam = Team(int.parse(_targetNumber), location, [],
+      Team _newTeam = Team(int.parse(_targetNumber), location, [], [],
           _targetDescription, _targetName, _targetPassword);
       addTeamToMap(_newTeam);
       logInTeam(_newTeam);
