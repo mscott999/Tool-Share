@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:tool_share/main.dart';
+import '../model/Team.dart';
 import '../viewmodel/HomeViewModel.dart';
 
 class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     HomeViewModel.loadFulfilledRequests(context);
+    for (int t in getTeamMap().keys) {
+      print(t.toString());
+    }
     return Scaffold(
         appBar: AppBar(
           title: const Text('Tool Share'),

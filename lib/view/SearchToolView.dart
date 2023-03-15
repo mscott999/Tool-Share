@@ -5,11 +5,17 @@ import 'package:tool_share/model/Team.dart';
 import 'package:tool_share/viewmodel/SearchToolViewModel.dart';
 
 class SearchToolView extends StatefulWidget {
+  @override
   _SearchToolViewState createState() => _SearchToolViewState();
 }
 
 class _SearchToolViewState extends State<SearchToolView> {
   static late List<String> _toolNames;
+
+  @override
+  initState() {
+    SearchToolViewModel.loadDefaultMarkers();
+  }
 
   Widget build(BuildContext context) {
     _toolNames = SearchToolViewModel.getToolNames();
