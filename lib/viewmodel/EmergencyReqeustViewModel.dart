@@ -38,6 +38,7 @@ class EmergencyRequestViewModel {
     if (team == getLoggedInTeam()) {
       showDialog(
           context: context,
+          barrierDismissible: false,
           builder: (context) {
             return SimpleDialog(
               title: const Text('Fulfill Self Request?'),
@@ -54,6 +55,7 @@ class EmergencyRequestViewModel {
                             team.removeRequest(request);
                             showDialog(
                                 context: context,
+                                barrierDismissible: false,
                                 builder: (context) {
                                   return SimpleDialog(
                                     title: const Text('Request Fulfilled'),
@@ -87,6 +89,7 @@ class EmergencyRequestViewModel {
     } else {
       showDialog(
           context: context,
+          barrierDismissible: false,
           builder: (context) {
             return SimpleDialog(
               title: const Text('Fulfill Request'),
@@ -105,6 +108,7 @@ class EmergencyRequestViewModel {
                             team.removeRequest(request);
                             showDialog(
                                 context: context,
+                                barrierDismissible: false,
                                 builder: (context) {
                                   return SimpleDialog(
                                     title: const Text('Request Fulfilled'),

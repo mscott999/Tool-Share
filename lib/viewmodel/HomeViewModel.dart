@@ -19,6 +19,7 @@ class HomeViewModel {
         in getLoggedInTeam()!.getFulfilledRequests()) {
       showDialog(
           context: context,
+          barrierDismissible: false,
           builder: (context) {
             return SimpleDialog(
               title: const Text('Emergency Request Fulfilled!'),
@@ -45,6 +46,7 @@ class HomeViewModel {
   static void delete(BuildContext context) {
     showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (context) {
           return SimpleDialog(
             title: const Text('Delete Team?'),

@@ -20,6 +20,7 @@ class DeleteToolViewModel {
   static void _selectTool(BuildContext context, Tool tool, State state) {
     showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (context) {
           return SimpleDialog(
             title: const Text('Delete Tool?'),
@@ -37,6 +38,7 @@ class DeleteToolViewModel {
                           getLoggedInTeam()!.removeTool(tool);
                           showDialog(
                               context: context,
+                              barrierDismissible: false,
                               builder: (context) {
                                 return SimpleDialog(
                                   title: const Text('Tool Deleted'),

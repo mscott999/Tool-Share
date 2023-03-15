@@ -60,6 +60,7 @@ class _SearchToolViewState extends State<SearchToolView> {
                         } else {
                           showDialog(
                               context: context,
+                              barrierDismissible: false,
                               builder: (context) {
                                 return SimpleDialog(
                                   title: const Text('Tool not found'),

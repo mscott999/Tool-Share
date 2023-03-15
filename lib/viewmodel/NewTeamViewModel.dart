@@ -35,6 +35,7 @@ class NewTeamViewModel {
   static void _onMapTapped(LatLng location) {
     showDialog(
         context: _bContext,
+        barrierDismissible: false,
         builder: (context) {
           return SimpleDialog(
             title: const Text('Confirm Location?'),
@@ -73,6 +74,7 @@ class NewTeamViewModel {
     if (int.tryParse(_targetNumber) == null || int.parse(_targetNumber) <= 0) {
       showDialog(
           context: _bContext,
+          barrierDismissible: false,
           builder: (bContext) {
             return SimpleDialog(
               title: const Text('Invalid Number'),
@@ -91,6 +93,7 @@ class NewTeamViewModel {
     } else if (getTeamMap().containsKey(int.parse(_targetNumber))) {
       showDialog(
           context: _bContext,
+          barrierDismissible: false,
           builder: (bContext) {
             return SimpleDialog(
               title: const Text('Invalid Number'),
@@ -110,6 +113,7 @@ class NewTeamViewModel {
     } else if (_targetPassword.length < 4) {
       showDialog(
           context: _bContext,
+          barrierDismissible: false,
           builder: (bContext) {
             return SimpleDialog(
               title: const Text('Invalid Password'),
@@ -129,6 +133,7 @@ class NewTeamViewModel {
     } else if (_targetName.length <= 0) {
       showDialog(
           context: _bContext,
+          barrierDismissible: false,
           builder: (bContext) {
             return SimpleDialog(
               title: const Text('Invalid Team Name'),
@@ -147,6 +152,7 @@ class NewTeamViewModel {
     } else if (_targetDescription.isEmpty) {
       showDialog(
           context: _bContext,
+          barrierDismissible: false,
           builder: (bContext) {
             return SimpleDialog(
               title: const Text('Invalid Team Description'),
@@ -170,6 +176,7 @@ class NewTeamViewModel {
       logInTeam(_newTeam);
       showDialog(
           context: _bContext,
+          barrierDismissible: false,
           builder: (bContext) {
             return SimpleDialog(
               title: const Text('Team Successfully Initialized'),

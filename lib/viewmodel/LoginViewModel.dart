@@ -11,6 +11,7 @@ class LoginViewModel {
     if (_targetNumber.isEmpty || int.tryParse(_targetNumber) == null) {
       showDialog(
           context: context,
+          barrierDismissible: false,
           builder: (context) {
             return SimpleDialog(
               title: const Text('Invalid Number'),
@@ -29,6 +30,7 @@ class LoginViewModel {
     } else if (_targetPassword.isEmpty) {
       showDialog(
           context: context,
+          barrierDismissible: false,
           builder: (context) {
             return SimpleDialog(
               title: const Text('Invalid Password'),
@@ -49,6 +51,7 @@ class LoginViewModel {
             _targetPassword) {
       showDialog(
           context: context,
+          barrierDismissible: false,
           builder: (context) {
             return SimpleDialog(
               title: const Text('Invalid Credentials'),

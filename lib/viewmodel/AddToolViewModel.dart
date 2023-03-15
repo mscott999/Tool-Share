@@ -25,6 +25,7 @@ class AddToolViewModel {
     if (_targetName.isEmpty) {
       showDialog(
           context: context,
+          barrierDismissible: false,
           builder: (context) {
             return SimpleDialog(
               title: const Text('No Tool Name Provided'),
@@ -49,6 +50,7 @@ class AddToolViewModel {
         !_targetSaturday) {
       showDialog(
           context: context,
+          barrierDismissible: false,
           builder: (context) {
             return SimpleDialog(
               title: const Text('Tool Always unavailable'),
@@ -69,6 +71,7 @@ class AddToolViewModel {
       print('Running');
       showDialog(
           context: context,
+          barrierDismissible: false,
           builder: (context) {
             return SimpleDialog(
               title: const Text('Equipment Already Added'),
@@ -98,6 +101,7 @@ class AddToolViewModel {
                                 _targetName));
                             showDialog(
                                 context: context,
+                                barrierDismissible: false,
                                 builder: (context) {
                                   return SimpleDialog(
                                     title: const Text(
@@ -146,6 +150,7 @@ class AddToolViewModel {
           _targetName));
       showDialog(
           context: context,
+          barrierDismissible: false,
           builder: (context) {
             return SimpleDialog(
               title: const Text('Equipment Successfully Added'),

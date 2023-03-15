@@ -12,6 +12,7 @@ class NewEmergencyRequestViewModel {
     if (_targetName.isEmpty) {
       showDialog(
           context: context,
+          barrierDismissible: false,
           builder: (context) {
             return SimpleDialog(
               title: const Text('Invalid Request'),
