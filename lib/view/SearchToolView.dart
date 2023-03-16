@@ -39,8 +39,15 @@ class _SearchToolViewState extends State<SearchToolView> {
                           .contains(textEditingValue.text.toLowerCase());
                     });
                   },
-                  onSelected: (String _option) {
-                    SearchToolViewModel.searchForTool(_option, this);
+                  onSelected: (String string) {
+                    SearchToolViewModel.searchForTool(
+                        string,
+                        0,
+                        getLoggedInTeam()!.getLocation(),
+                        double.infinity,
+                        false,
+                        this,
+                        context);
                   },
                   fieldViewBuilder: ((BuildContext context,
                       TextEditingController fieldTextEditingController,
@@ -49,50 +56,20 @@ class _SearchToolViewState extends State<SearchToolView> {
                     return TextField(
                       controller: fieldTextEditingController,
                       focusNode: fieldFocusNode,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Search by tool name:',
                         filled: true,
                         fillColor: Colors.green,
                       ),
                       onSubmitted: (String string) {
-                        if (_toolNames.contains(string)) {
-                          SearchToolViewModel.searchForTool(string, this);
-                        } else {
-                          showDialog(
-                              context: context,
-                              barrierDismissible: false,
-                              builder: (context) {
-                                return SimpleDialog(
-                                  title: const Text('Tool not found'),
-                                  children: [
-                                    Column(children: [
-                                      Text('"' +
-                                          string +
-                                          '" does not belong to any team. Would you like to submit an emergency request?'),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          ElevatedButton(
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                                SearchToolViewModel
-                                                    .routeToEmergencyRequest(
-                                                        context);
-                                              },
-                                              child: const Text('Yes')),
-                                          ElevatedButton(
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: const Text('No')),
-                                        ],
-                                      ),
-                                    ]),
-                                  ],
-                                );
-                              });
-                        }
+                        SearchToolViewModel.searchForTool(
+                            string,
+                            0,
+                            getLoggedInTeam()!.getLocation(),
+                            double.infinity,
+                            false,
+                            this,
+                            context);
                       },
                     );
                   }),
