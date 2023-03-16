@@ -68,7 +68,6 @@ class AddToolViewModel {
             );
           });
     } else if (_alreadyExists) {
-      print('Running');
       showDialog(
           context: context,
           barrierDismissible: false,

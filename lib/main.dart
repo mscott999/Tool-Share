@@ -37,6 +37,10 @@ void initCSV() async {
   print(await _teamCSV!.readAsString());
 }
 
+void saveData() async {
+  String json = json
+}
+
 void logInTeam(Team team) {
   _loggedInTeam = team;
 }

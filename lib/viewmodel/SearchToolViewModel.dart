@@ -59,38 +59,6 @@ class SearchToolViewModel {
     return _results;
   }
 
-  /*
-  static void searchForTool(String name, State state) {
-    loadDefaultMarkers();
-    LatLng _closest = const LatLng(47.595878, -122.124834);
-    double _minDistance = double.infinity;
-    _markers.forEach((key, value) {
-      for (Tool tool in key.getToolList()) {
-        if (tool.getTitle() == name) {
-          updateMarker(key, tool);
-          double _distanceToTool = sqrt(pow(
-                  (getLoggedInTeam()!.getLocation().latitude -
-                          key.getLocation().latitude)
-                      .abs(),
-                  2) +
-              pow(
-                  (getLoggedInTeam()!.getLocation().longitude -
-                          key.getLocation().longitude)
-                      .abs(),
-                  2));
-          if (_distanceToTool < _minDistance) {
-            _minDistance = _distanceToTool;
-            _closest = key.getLocation();
-          }
-        }
-      }
-    });
-    _mapController!.animateCamera(CameraUpdate.newCameraPosition(
-        CameraPosition(target: _closest, zoom: 11)));
-    state.setState(() {});
-  }
-  */
-
   static void searchForTool(
       String _toolName,
       int _markerIndex,

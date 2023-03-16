@@ -19,7 +19,7 @@ class _AddToolViewState extends State<AddToolView> {
             padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
             child: TextField(
               onChanged: (String string) {
-                AddToolViewModel.setTargetName(string);
+                AddToolViewModel.setTargetName(string.toLowerCase());
               },
               decoration: const InputDecoration(
                 hintText: 'Name of Tool',

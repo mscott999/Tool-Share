@@ -23,7 +23,8 @@ class _NewEmergencyRequestViewState extends State<NewEmergencyRequestView> {
             padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
             child: TextField(
               onChanged: (String string) {
-                NewEmergencyRequestViewModel.setTargetName(string);
+                NewEmergencyRequestViewModel.setTargetName(
+                    string.toLowerCase());
               },
               decoration: const InputDecoration(
                 hintText: 'Name of Tool',

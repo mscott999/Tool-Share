@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:tool_share/model/EmergencyRequest.dart';
 import 'Tool.dart';
@@ -5,7 +7,7 @@ import 'Tool.dart';
 class Team {
   int _number;
   LatLng _location;
-  List<Tool> _toolList;
+  late List<Tool> _toolList;
   List<EmergencyRequest> _emergencyRequests;
   late List<EmergencyRequest> _fulfilledRequests;
   String _bio;
@@ -17,16 +19,37 @@ class Team {
     _fulfilledRequests = [];
   }
 
-  //String toCSV() {
-  //  return _number.toString() + ',' +
-  //         _location.latitude.toString() + ',' +
-  //         _location.longitude.toString() + ',' +
-  //         _toolList.to
-  //         _bio + ',' +
-  //         _name + ',' +
-  //         _password + ',' +
-//
-  //}
+  Team.fromJson(Map<String, dynamic> json)
+      : _number = int.parse(json['_number']),
+        _location = LatLng(json['_latitude'], json['_longitude']),
+        _emergencyRequests = jsonDecode(json['_emergencyRequests'])
+            .map((i) => EmergencyRequest.fromJson(i))
+            .toList(),
+        _fulfilledRequests = jsonDecode(json['_fulfilledRequests'])
+            .map((i) => EmergencyRequest.fromJson(i))
+            .toList(),
+        _bio = json['_bio'],
+        _name = json['_name'],
+        _password = json['_password'];
+
+  Map<String, dynamic> toJson() {
+    List<Map> _toolList = this._toolList.map((i) => i.toJson()).toList();
+    List<Map> _emergencyRequests =
+        this._emergencyRequests.map((i) => i.toJson()).toList();
+    List<Map> _fulfilledRequests =
+        this._fulfilledRequests.map((i) => i.toJson()).toList();
+    return {
+      '_number': _number.toString(),
+      '_latitude': _location.latitude.toString(),
+      '_longitude': _location.longitude.toString(),
+      '_toolList': _toolList,
+      '_emergencyReqeusts': _emergencyRequests,
+      '_fulfilledRequests': _fulfilledRequests,
+      '_bio': _bio,
+      '_name': _name,
+      '_password': _password,
+    };
+  }
 
   void addTool(Tool tool) {
     _toolList.add(tool);
