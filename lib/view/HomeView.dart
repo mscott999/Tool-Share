@@ -91,6 +91,7 @@ class HomeView extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         HomeViewModel.logOut(context);
+                        saveData();
                       },
                       child: Text("Sign Out"),
                     ),
@@ -99,6 +100,7 @@ class HomeView extends StatelessWidget {
                           primary: Colors.red, onPrimary: Colors.yellow),
                       onPressed: () {
                         HomeViewModel.delete(context);
+                        saveData();
                       },
                       child: const Text("Delete Team"),
                     ),

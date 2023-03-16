@@ -21,12 +21,16 @@ class Team {
 
   Team.fromJson(Map<String, dynamic> json)
       : _number = int.parse(json['_number']),
-        _location = LatLng(json['_latitude'], json['_longitude']),
-        _emergencyRequests = jsonDecode(json['_emergencyRequests'])
-            .map((i) => EmergencyRequest.fromJson(i))
+        _location = LatLng(
+            double.parse(json['_latitude']), double.parse(json['_longitude'])),
+        //Follow this.
+        _toolList =
+            json['_toolList'].map<Tool>((i) => Tool.fromJson(i)).toList(),
+        _emergencyRequests = json['_emergencyReqeusts']
+            .map<EmergencyRequest>((i) => EmergencyRequest.fromJson(i))
             .toList(),
-        _fulfilledRequests = jsonDecode(json['_fulfilledRequests'])
-            .map((i) => EmergencyRequest.fromJson(i))
+        _fulfilledRequests = json['_fulfilledRequests']
+            .map<EmergencyRequest>((i) => EmergencyRequest.fromJson(i))
             .toList(),
         _bio = json['_bio'],
         _name = json['_name'],

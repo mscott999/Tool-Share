@@ -8,7 +8,10 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Tool Share')),
+      appBar: AppBar(
+        title: const Text('Tool Share'),
+        automaticallyImplyLeading: false,
+      ),
       body: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         const Text('Sign in', style: TextStyle(fontSize: 35)),
         Padding(
