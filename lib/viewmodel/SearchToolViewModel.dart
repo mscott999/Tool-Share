@@ -163,7 +163,7 @@ class SearchToolViewModel {
       _snippet += 'Su ';
     }
     if (tool.getDaysAvailable()[1]) {
-      _snippet += 'M ';
+      _snippet += 'Mo ';
     }
     if (tool.getDaysAvailable()[2]) {
       _snippet += 'Tu ';
@@ -178,7 +178,7 @@ class SearchToolViewModel {
       _snippet += 'Fr ';
     }
     if (tool.getDaysAvailable()[6]) {
-      _snippet += 'Su ';
+      _snippet += 'Sa ';
     }
     Marker _marker = Marker(
         markerId: MarkerId((team.getNumber()).toString()),

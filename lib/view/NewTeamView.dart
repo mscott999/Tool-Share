@@ -4,9 +4,9 @@ import '../viewmodel/NewTeamViewModel.dart';
 // Application page for creating a new team into the applciation.
 class NewTeamView extends StatelessWidget {
   const NewTeamView({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    NewTeamViewModel.init();
     return Scaffold(
         appBar: AppBar(title: const Text('Tool Share')),
         body: SingleChildScrollView(

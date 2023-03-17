@@ -14,6 +14,13 @@ class NewTeamViewModel {
   static String _targetName = '';
   static String _targetDescription = '';
 
+  static void init() {
+    _targetNumber = '';
+    _targetPassword = '';
+    _targetName = '';
+    _targetDescription = '';
+  }
+
   // Returns a google map to display with each team's location present.
   static Widget getMap(BuildContext context) {
     _bContext = context;

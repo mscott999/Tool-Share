@@ -13,6 +13,13 @@ class NewEmergencyRequestView extends StatefulWidget {
 
 class _NewEmergencyRequestViewState extends State<NewEmergencyRequestView> {
   @override
+  // Sets input variables to defualt state upon screen load.
+  void initState() {
+    NewEmergencyRequestViewModel.setTargetName('');
+    NewEmergencyRequestViewModel.setTargetQuantity(2);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Tool Share')),

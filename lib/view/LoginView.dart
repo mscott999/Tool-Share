@@ -7,6 +7,7 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LoginViewModel.init();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tool Share'),

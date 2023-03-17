@@ -13,6 +13,20 @@ class AddToolView extends StatefulWidget {
 // Default state of the page. Changes when the horizontal number picker is altered.
 class _AddToolViewState extends State<AddToolView> {
   @override
+  // Sets input variables to defualt state upon screen load.
+  void initState() {
+    AddToolViewModel.setTargetName('');
+    AddToolViewModel.setTargetQuantity(2);
+    AddToolViewModel.setTargetSunday(false);
+    AddToolViewModel.setTargetMonday(false);
+    AddToolViewModel.setTargetTuesday(false);
+    AddToolViewModel.setTargetWednesday(false);
+    AddToolViewModel.setTargetThursday(false);
+    AddToolViewModel.setTargetFriday(false);
+    AddToolViewModel.setTargetSaturday(false);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Tool Share')),

@@ -9,6 +9,11 @@ class LoginViewModel {
   static String _targetNumber = '';
   static String _targetPassword = '';
 
+  static void init() {
+    _targetNumber = '';
+    _targetPassword = '';
+  }
+
   // Method for running several conditionals to see if all criterion were met for initializing a new team.
   static void attemptLogin(BuildContext context) {
     // Displays error dialog if the user has not typed in a valid number.
