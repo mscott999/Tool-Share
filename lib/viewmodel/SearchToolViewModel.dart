@@ -7,10 +7,14 @@ import '../model/Team.dart';
 import '../model/Tool.dart';
 import '../view/EmergencyRequestView.dart';
 
+// Backend for the "SearchTool" page.
 class SearchToolViewModel {
+  // Hashmap of markers to be displayed on the map for each team.
   static late Map<Team, Marker> _markers;
+  // Map controller for moving the map's camera.
   static GoogleMapController? _mapController;
 
+  // Loads in every team's location into the map, with none specifically selected.
   static void loadDefaultMarkers() {
     _markers = HashMap();
     getTeamMap().forEach((key, value) {
@@ -28,6 +32,7 @@ class SearchToolViewModel {
     });
   }
 
+  // Returns the google map for display.
   static Widget getMap(BuildContext context) {
     return SizedBox(
       height: 570,
@@ -46,6 +51,7 @@ class SearchToolViewModel {
     );
   }
 
+  // Provides a list of all tool names present within the application.
   static List<String> getToolNames() {
     List<String> _results = [];
     getTeamMap().forEach((key, value) {
@@ -59,6 +65,7 @@ class SearchToolViewModel {
     return _results;
   }
 
+  // Recursive method for searching every team's tool list to find the desired tool.
   static void searchForTool(
       String _toolName,
       int _markerIndex,
@@ -145,6 +152,7 @@ class SearchToolViewModel {
         _atLeastOneToolFound, _state, context);
   }
 
+  // Changes the team's marker description from their biography to the availability of the searched tool.
   static void updateMarker(Team team, Tool tool) {
     String _snippet = 'x' +
         tool.getQuantity().toString() +
@@ -183,8 +191,9 @@ class SearchToolViewModel {
     _markers[team] = _marker;
   }
 
+  // transitions to the emergency request page.
   static void routeToEmergencyRequest(context) {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: ((context) => EmergencyRequestView())));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: ((context) => const EmergencyRequestView())));
   }
 }

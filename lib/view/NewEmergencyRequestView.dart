@@ -1,17 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
-import 'package:tool_share/main.dart';
-import 'package:tool_share/model/EmergencyRequest.dart';
-
 import '../viewmodel/NewEmergencyRequestViewModel.dart';
 
+// Application page for making a new emergency request for a tool. State is updated to reflect changes in the quantity picker.
 class NewEmergencyRequestView extends StatefulWidget {
+  const NewEmergencyRequestView({Key? key}) : super(key: key);
+
+  @override
   _NewEmergencyRequestViewState createState() =>
       _NewEmergencyRequestViewState();
 }
 
 class _NewEmergencyRequestViewState extends State<NewEmergencyRequestView> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Tool Share')),
@@ -21,6 +22,7 @@ class _NewEmergencyRequestViewState extends State<NewEmergencyRequestView> {
           const Text('New Emergency Request', style: TextStyle(fontSize: 35)),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+            // Textfield for choosing the tool's name.
             child: TextField(
               onChanged: (String string) {
                 NewEmergencyRequestViewModel.setTargetName(
@@ -38,6 +40,7 @@ class _NewEmergencyRequestViewState extends State<NewEmergencyRequestView> {
             child: Column(
               children: [
                 const Text('Please select the quantity of tools:'),
+                // Widget for selecting the quantity of tools needed.
                 NumberPicker(
                   value: NewEmergencyRequestViewModel.getTargetQuantity(),
                   minValue: 1,
@@ -59,6 +62,7 @@ class _NewEmergencyRequestViewState extends State<NewEmergencyRequestView> {
           ),
           Padding(
               padding: const EdgeInsets.symmetric(),
+              // Submit selection button.
               child: ElevatedButton(
                   child: const Text('Submit'),
                   onPressed: () {

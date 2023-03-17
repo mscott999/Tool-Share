@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tool_share/main.dart';
-
 import '../model/Tool.dart';
 import '../view/HomeView.dart';
 
+// Back end of the "AddToolView" page.
 class AddToolViewModel {
+  // Temporary variables which are altered as the user interacts with the textfields, quantity picker, and day selectors. Default values are provided.
   static int _targetQuantity = 2;
   static String _targetName = '';
   static bool _targetSunday = false;
@@ -15,13 +16,16 @@ class AddToolViewModel {
   static bool _targetFriday = false;
   static bool _targetSaturday = false;
 
+  // Method used to first check if the team already has this tool, and if not, add it to the team.
   static void attemptAdd(BuildContext context) {
+    // Checks if tool aready exists, throws error dialog.
     bool _alreadyExists = false;
     getLoggedInTeam()!.getToolList().forEach((Tool tool) {
       if (_targetName == tool.getTitle()) {
         _alreadyExists = true;
       }
     });
+    // Checks if a tool name was given. If not, throws error dialog.
     if (_targetName.isEmpty) {
       showDialog(
           context: context,
@@ -41,6 +45,7 @@ class AddToolViewModel {
               ],
             );
           });
+      // Checks if the tool is available at least one day of the week. If not, throw error dialog.
     } else if (!_targetSunday &&
         !_targetMonday &&
         !_targetTuesday &&
@@ -72,6 +77,7 @@ class AddToolViewModel {
           context: context,
           barrierDismissible: false,
           builder: (context) {
+            // Dialog box where user can choose to override preexisting tool.
             return SimpleDialog(
               title: const Text('Equipment Already Added'),
               children: [
@@ -83,6 +89,7 @@ class AddToolViewModel {
                     children: [
                       ElevatedButton(
                           onPressed: () {
+                            // Add tool to team.
                             getLoggedInTeam()!.getToolList().removeWhere(
                                 (tool) => tool.getTitle() == _targetName);
                             Navigator.pop(context);
@@ -98,6 +105,7 @@ class AddToolViewModel {
                                   _targetSaturday
                                 ],
                                 _targetName));
+                            // Success message.
                             showDialog(
                                 context: context,
                                 barrierDismissible: false,
@@ -125,7 +133,7 @@ class AddToolViewModel {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: Text('No'),
+                        child: const Text('No'),
                       ),
                     ],
                   ),
@@ -133,8 +141,8 @@ class AddToolViewModel {
               ],
             );
           });
-      print('runningdone');
     } else {
+      // Adds tool to team if not yet done so.
       getLoggedInTeam()!.addTool(Tool(
           _targetQuantity,
           [
@@ -147,6 +155,7 @@ class AddToolViewModel {
             _targetSaturday
           ],
           _targetName));
+      // Success message.
       showDialog(
           context: context,
           barrierDismissible: false,
@@ -168,23 +177,25 @@ class AddToolViewModel {
     }
   }
 
+  // Transitions to home screen.
   static void routeToHome(context) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: ((context) => HomeView())));
+        .push(MaterialPageRoute(builder: ((context) => const HomeView())));
   }
 
+  // Updates private variable per user input.
   static void setTargetQuantity(int value) {
     _targetQuantity = value;
-    print('quantity: ' + _targetQuantity.toString());
   }
 
+  // Rturns the quantity number to display.
   static int getTargetQuantity() {
     return _targetQuantity;
   }
 
+  // Updates private variables per user input.
   static void setTargetName(String string) {
     _targetName = string;
-    print('Name: ' + _targetName);
   }
 
   static void setTargetSunday(bool value) {

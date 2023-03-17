@@ -1,7 +1,7 @@
 import '../viewmodel/LoginViewModel.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// Application page for logging in to preexisting teams' accounts.
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
 
@@ -15,12 +15,13 @@ class LoginView extends StatelessWidget {
       body: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         const Text('Sign in', style: TextStyle(fontSize: 35)),
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 30),
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 30),
+          // Team number (Username) textfield.
           child: TextField(
             onChanged: (String string) {
               LoginViewModel.setTargetNumber(string);
             },
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: 'Team number',
               filled: true,
               fillColor: Colors.green,
@@ -28,13 +29,14 @@ class LoginView extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 30),
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 30),
+          // Team password textfield.
           child: TextField(
             onChanged: (String string) {
               LoginViewModel.setTargetPassword(string);
             },
             obscureText: true,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: 'Password',
               filled: true,
               fillColor: Colors.green,
@@ -44,17 +46,19 @@ class LoginView extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            // Submit button.
             ElevatedButton(
               onPressed: () {
                 LoginViewModel.attemptLogin(context);
               },
-              child: Text("Sign In"),
+              child: const Text("Sign In"),
             ),
+            // Add new team instead button.
             ElevatedButton(
               onPressed: () {
                 LoginViewModel.routeToNewUser(context);
               },
-              child: Text("New Team"),
+              child: const Text("New Team"),
             ),
           ],
         ),

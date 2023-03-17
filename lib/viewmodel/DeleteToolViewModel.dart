@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tool_share/main.dart';
-
 import '../model/Tool.dart';
 
+// Backend for the "deletetoolview" page.
 class DeleteToolViewModel {
+  // Method for displaying a list of every tool the user has, as well as a delete button for each.
   static Widget getTools(BuildContext context, State state) {
     return Column(children: <ElevatedButton>[
       for (int i = 0; i < getLoggedInTeam()!.getToolList().length; i++)
@@ -17,7 +18,9 @@ class DeleteToolViewModel {
     ]);
   }
 
+  // Runs when a user selects a tool for deletion.
   static void _selectTool(BuildContext context, Tool tool, State state) {
+    // Confirmation message.
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -34,12 +37,14 @@ class DeleteToolViewModel {
                   children: [
                     ElevatedButton(
                         onPressed: () {
+                          // Deletes tool, refreshes page.
                           Navigator.pop(context);
                           getLoggedInTeam()!.removeTool(tool);
                           showDialog(
                               context: context,
                               barrierDismissible: false,
                               builder: (context) {
+                                // Success message.
                                 return SimpleDialog(
                                   title: const Text('Tool Deleted'),
                                   children: [

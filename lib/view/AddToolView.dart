@@ -1,13 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:tool_share/viewmodel/AddToolViewModel.dart';
 
+// Application page for adding a new tool to the team's list of tools for lending.
 class AddToolView extends StatefulWidget {
+  const AddToolView({Key? key}) : super(key: key);
+
+  @override
   _AddToolViewState createState() => _AddToolViewState();
 }
 
+// Default state of the page. Changes when the horizontal number picker is altered.
 class _AddToolViewState extends State<AddToolView> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Tool Share')),
@@ -17,6 +22,7 @@ class _AddToolViewState extends State<AddToolView> {
           const Text('Add Tool To Team', style: TextStyle(fontSize: 35)),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+            // Tool Name TextField.
             child: TextField(
               onChanged: (String string) {
                 AddToolViewModel.setTargetName(string.toLowerCase());
@@ -33,6 +39,7 @@ class _AddToolViewState extends State<AddToolView> {
             child: Column(
               children: [
                 const Text('Please select the quantity of tools:'),
+                // Tool Quantity Picker.
                 NumberPicker(
                   value: AddToolViewModel.getTargetQuantity(),
                   minValue: 1,
@@ -55,6 +62,7 @@ class _AddToolViewState extends State<AddToolView> {
             'Please select which days of the week the tool is avaliable for lending:',
             textAlign: TextAlign.center,
           ),
+          // Days of the week available picker.
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 30),
             child: Row(
@@ -166,6 +174,7 @@ class _AddToolViewState extends State<AddToolView> {
               ],
             ),
           ),
+          // Add tool submit button.
           Padding(
               padding: const EdgeInsets.symmetric(),
               child: ElevatedButton(

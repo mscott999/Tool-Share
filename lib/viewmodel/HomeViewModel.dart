@@ -7,13 +7,17 @@ import '../view/EmergencyRequestView.dart';
 import '../view/LoginView.dart';
 import '../view/SearchToolView.dart';
 
+// Backend for the home page of the applicaton.
 class HomeViewModel {
+  // Method for logging out the current user and transitioning to the log in page.
   static void logOut(BuildContext context) {
     logOutTeam();
     routeToLogin(context);
   }
 
+  // Method for displaying "request fulfilled!" notifications upon page boot.
   static Future<void> loadFulfilledRequests(BuildContext context) async {
+    // waits for page to load before showing notifications.
     await Future.delayed(Duration.zero);
     for (EmergencyRequest request
         in getLoggedInTeam()!.getFulfilledRequests()) {
@@ -43,6 +47,7 @@ class HomeViewModel {
     }
   }
 
+  // Method for making the user confirm that they wish to delete their team.
   static void delete(BuildContext context) {
     showDialog(
         context: context,
@@ -78,28 +83,29 @@ class HomeViewModel {
         });
   }
 
+  // Methods for routing between the application's different pages.
   static void routeToAddTool(context) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: ((context) => AddToolView())));
+        .push(MaterialPageRoute(builder: ((context) => const AddToolView())));
   }
 
   static void routeToDeleteTool(context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: ((context) => DeleteToolView())));
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: ((context) => const DeleteToolView())));
   }
 
   static void routeToSearchTool(context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: ((context) => SearchToolView())));
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: ((context) => const SearchToolView())));
   }
 
   static void routeToEmergencyRequest(context) {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: ((context) => EmergencyRequestView())));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: ((context) => const EmergencyRequestView())));
   }
 
   static void routeToLogin(context) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: ((context) => LoginView())));
+        .push(MaterialPageRoute(builder: ((context) => const LoginView())));
   }
 }

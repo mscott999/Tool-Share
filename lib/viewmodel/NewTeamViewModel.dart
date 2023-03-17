@@ -4,13 +4,17 @@ import 'package:tool_share/main.dart';
 import '../model/Team.dart';
 import '../view/HomeView.dart';
 
+// Backend for the "NewTeam" page.
 class NewTeamViewModel {
+  // Context of the newteam page for returning dialogs.
   static late BuildContext _bContext;
+  // Temporary variables which are determined by the user's input on the page's widgets.
   static String _targetNumber = '';
   static String _targetPassword = '';
   static String _targetName = '';
   static String _targetDescription = '';
 
+  // Returns a google map to display with each team's location present.
   static Widget getMap(BuildContext context) {
     _bContext = context;
     return Column(
@@ -32,6 +36,7 @@ class NewTeamViewModel {
     );
   }
 
+  // method for the user to select the team's location by tapping on the map. Also serves as the submit button.
   static void _onMapTapped(LatLng location) {
     showDialog(
         context: _bContext,
@@ -69,8 +74,10 @@ class NewTeamViewModel {
         });
   }
 
+  // Methods runs several conditionals to see if a new team can be initialized.
   static void attemptNewUser(LatLng location) {
     Navigator.pop(_bContext);
+    // Checks if a valid number was not given.
     if (int.tryParse(_targetNumber) == null || int.parse(_targetNumber) <= 0) {
       showDialog(
           context: _bContext,
@@ -90,6 +97,7 @@ class NewTeamViewModel {
               ],
             );
           });
+      // Checks if the team number is already taken.
     } else if (getTeamMap().containsKey(int.parse(_targetNumber))) {
       showDialog(
           context: _bContext,
@@ -110,6 +118,7 @@ class NewTeamViewModel {
               ],
             );
           });
+      // Checks if the password is at least four characters.
     } else if (_targetPassword.length < 4) {
       showDialog(
           context: _bContext,
@@ -130,7 +139,8 @@ class NewTeamViewModel {
               ],
             );
           });
-    } else if (_targetName.length <= 0) {
+      // Checks if a team name has been given.
+    } else if (_targetName.isEmpty) {
       showDialog(
           context: _bContext,
           barrierDismissible: false,
@@ -149,6 +159,7 @@ class NewTeamViewModel {
               ],
             );
           });
+      // Checks if a team description has been given.
     } else if (_targetDescription.isEmpty) {
       showDialog(
           context: _bContext,
@@ -170,7 +181,8 @@ class NewTeamViewModel {
             );
           });
     } else {
-      Team _newTeam = Team(int.parse(_targetNumber), location, [], [],
+      // Success scenario: new team is added to the applciation with empty tool and request lists.
+      Team _newTeam = Team(int.parse(_targetNumber), location, [], [], [],
           _targetDescription, _targetName, _targetPassword);
       addTeamToMap(_newTeam);
       logInTeam(_newTeam);
@@ -197,28 +209,26 @@ class NewTeamViewModel {
     }
   }
 
+  // setters used by the textfield for editing these private variables.
   static void setTargetNumber(String string) {
     _targetNumber = string;
-    print('number: ' + _targetNumber);
   }
 
   static void setTargetPassword(String string) {
     _targetPassword = string;
-    print('Password: ' + _targetPassword);
   }
 
   static void setTargetName(String string) {
     _targetName = string;
-    print('Name: ' + _targetName);
   }
 
   static void setTargetDescription(String string) {
     _targetDescription = string;
-    print('Bio: ' + _targetDescription);
   }
 
+  // Method used for transitioning to the home screen.
   static void routeToHome(context) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: ((context) => HomeView())));
+        .push(MaterialPageRoute(builder: ((context) => const HomeView())));
   }
 }

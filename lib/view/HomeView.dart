@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:tool_share/main.dart';
-import '../model/Team.dart';
 import '../viewmodel/HomeViewModel.dart';
 
+// Home page of the application.
 class HomeView extends StatelessWidget {
+  const HomeView({Key? key}) : super(key: key);
+
+  @override
   Widget build(BuildContext context) {
+    // Displays a notification if this team has had their request fulfilled.
     HomeViewModel.loadFulfilledRequests(context);
-    for (int t in getTeamMap().keys) {
-      print(t.toString());
-    }
     return Scaffold(
         appBar: AppBar(
           title: const Text('Tool Share'),
@@ -25,6 +26,7 @@ class HomeView extends StatelessWidget {
                     left: 8.0,
                     right: 8.0,
                   ),
+                  // "Add tool" button
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(300, 100),
@@ -44,6 +46,7 @@ class HomeView extends StatelessWidget {
                     left: 8.0,
                     right: 8.0,
                   ),
+                  // "Delete tool" button
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(300, 100),
@@ -61,6 +64,7 @@ class HomeView extends StatelessWidget {
                     left: 8.0,
                     right: 8.0,
                   ),
+                  // "Search for tool" button
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(300, 100),
@@ -74,6 +78,7 @@ class HomeView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(
                       top: 15.0, left: 8.0, right: 8.0, bottom: 15.0),
+                  // "Emergency requests" button
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(300, 100),
@@ -88,13 +93,15 @@ class HomeView extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    // Sign out, return to login button
                     ElevatedButton(
                       onPressed: () {
                         HomeViewModel.logOut(context);
                         saveData();
                       },
-                      child: Text("Sign Out"),
+                      child: const Text("Sign Out"),
                     ),
+                    // Delete team, return to login button.
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           primary: Colors.red, onPrimary: Colors.yellow),

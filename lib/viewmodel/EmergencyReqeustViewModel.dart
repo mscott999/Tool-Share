@@ -1,12 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../main.dart';
 import '../model/EmergencyRequest.dart';
 import '../model/Team.dart';
 import '../view/NewEmergencyRequestView.dart';
 
+// Backend for the "EmergencyRequestView" page.
 class EmergencyRequestViewModel {
+  // Returns a visible list of all request, with each their respective "fulfill" button.
   static Widget getRequests(BuildContext context, State state) {
     List<Row> _requestRows = [];
     for (Team team in getTeamMap().values) {
@@ -21,7 +21,7 @@ class EmergencyRequestViewModel {
               onPressed: () {
                 fulfillRequest(team, request, context, state);
               },
-              child: Text('Fulfill'),
+              child: const Text('Fulfill'),
             ),
           ],
         ));
@@ -33,8 +33,10 @@ class EmergencyRequestViewModel {
     );
   }
 
+  // Runs when a request's "fulfill" button is pressed.
   static void fulfillRequest(
       Team team, EmergencyRequest request, BuildContext context, State state) {
+    // Checks if a team is fulfilling their own request. If so, they don't need to see a notification.
     if (team == getLoggedInTeam()) {
       showDialog(
           context: context,
@@ -61,7 +63,7 @@ class EmergencyRequestViewModel {
                                     title: const Text('Request Fulfilled'),
                                     children: [
                                       Column(children: [
-                                        Text(
+                                        const Text(
                                             'Your request has been fulfilled!'),
                                         ElevatedButton(
                                             onPressed: () {
@@ -87,6 +89,7 @@ class EmergencyRequestViewModel {
             );
           });
     } else {
+      // Dialog for fulfilling ANOTHER team's request.
       showDialog(
           context: context,
           barrierDismissible: false,
@@ -143,8 +146,9 @@ class EmergencyRequestViewModel {
     }
   }
 
+  // Transitions to the page for adding a new emergency request.
   static void routeToNewEmergencyRequest(context) {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: ((context) => NewEmergencyRequestView())));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: ((context) => const NewEmergencyRequestView())));
   }
 }
