@@ -121,10 +121,13 @@ class SearchToolViewModel {
     if (_markerIndex == 0) {
       loadDefaultMarkers();
     }
+    // Iterates through each team's tool list to see if the tool name searched matches any.
     for (Tool tool in _markers.keys.elementAt(_markerIndex).getToolList()) {
       if (tool.getTitle() == _toolName) {
         _atLeastOneToolFound = true;
+        // The team's google map marker is updated to reflect their possesion of the tool.
         updateMarker(_markers.keys.elementAt(_markerIndex), tool);
+        // The distance between the logged in team and the team being searched is calculated using the pythagorean theorem.
         double _distanceToTool = sqrt(pow(
                 (getLoggedInTeam()!.getLocation().latitude -
                         _markers.keys
@@ -141,6 +144,7 @@ class SearchToolViewModel {
                             .longitude)
                     .abs(),
                 2));
+        // If this team is the closest instance of the tool existing, move the camera to this team.
         if (_distanceToTool < _minDistance) {
           _minDistance = _distanceToTool;
           _closest = _markers.keys.elementAt(_markerIndex).getLocation();

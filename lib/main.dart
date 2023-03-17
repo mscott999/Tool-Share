@@ -8,7 +8,7 @@ import 'model/Team.dart';
 
 // HashMap of teams present within the application. The team's team number is used as the key for each value, allowing for instantaneous lookup.
 HashMap<int, Team> _teamMap = HashMap();
-// Nonvolatile txt file containing each of the team's data recorded in JSON format.
+// Non-volatile txt file containing each of the team's data recorded in JSON format.
 late File _teamData;
 // Team which is currently logged in and being altered.
 Team? _loggedInTeam;

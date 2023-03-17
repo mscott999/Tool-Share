@@ -14,13 +14,13 @@ class Tool {
   // Constructor for creating a new tool instance from a JSON text format.
   Tool.fromJson(Map<String, dynamic> json)
       : _quantity = int.parse(json['_quantity']),
-        _daysAvailable = jsonDecode(json['_daysAvailable']),
+        _daysAvailable = List<bool>.from(jsonDecode(json['_daysAvailable'])),
         _title = json['_title'];
 
   // Constructor for representing a Tool using a JSON text format.
   Map<String, dynamic> toJson() => {
         '_quantity': _quantity.toString(),
-        '_dayAvailable': jsonEncode(_daysAvailable),
+        '_daysAvailable': jsonEncode(_daysAvailable),
         '_title': _title,
       };
 
