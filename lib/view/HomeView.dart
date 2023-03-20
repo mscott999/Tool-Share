@@ -54,8 +54,8 @@ class HomeView extends StatelessWidget {
                     onPressed: () {
                       HomeViewModel.routeToDeleteTool(context);
                     },
-                    child:
-                        const Text('Remove Tool To Team', textScaleFactor: 1.4),
+                    child: const Text('Remove Tool From Team',
+                        textScaleFactor: 1.4),
                   ),
                 ),
                 Padding(

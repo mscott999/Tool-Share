@@ -29,7 +29,6 @@ class Team {
       : _number = int.parse(json['_number']),
         _location = LatLng(
             double.parse(json['_latitude']), double.parse(json['_longitude'])),
-        //Follow this.
         _toolList =
             json['_toolList'].map<Tool>((i) => Tool.fromJson(i)).toList(),
         _emergencyRequests = json['_emergencyReqeusts']
